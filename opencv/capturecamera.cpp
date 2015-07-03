@@ -1,4 +1,4 @@
-/*#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/highgui/highgui.hpp"
 #include <iostream>
 
 using namespace cv;
@@ -6,14 +6,24 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    VideoCapture cap(1); // open the video camera no. 0
+	int i = 0;
+	while(1) {
+		VideoCapture cap(i); // open the video camera no. 0
 
-    if (!cap.isOpened())  // if not success, exit program
-    {
-        cout << "Cannot open the video cam" << endl;
-        return -1;
-    }
-
+		if (!cap.isOpened()) { // if not success, exit program
+		    cout << "Cannot open the video cam no." << i << endl;
+		    i++;
+		}
+		else if (i >= 5) {
+		    cout << "Failed to open any of the video cams" << endl;
+		    return -1;
+		}
+		else {
+		    cout << "Successfully opened the video cam no." << i << endl;
+		    break;
+		}
+	}
+    
    double dWidth = cap.get(CV_CAP_PROP_FRAME_WIDTH); //get the width of frames of the video
    double dHeight = cap.get(CV_CAP_PROP_FRAME_HEIGHT); //get the height of frames of the video
 
@@ -44,27 +54,3 @@ int main(int argc, char* argv[])
     return 0;
 
 }
-*/
-
-#include <iostream>
-#include <cv.h>
-#include <highgui.h>
- 
-using namespace std;
-char key;
-int main()
-{
-    cvNamedWindow("Camera_Output", 1);    //Create window
-    CvCapture* capture = cvCaptureFromCAM(CV_CAP_ANY);  //Capture using any camera connected to your system
-    while(1){ //Create infinte loop for live streaming
- 
-        IplImage* frame = cvQueryFrame(capture); //Create image frames from capture
-        cvShowImage("Camera_Output", frame);   //Show image frames on created window
-        key = cvWaitKey(10);     //Capture Keyboard stroke
-        if (char(key) == 27){
-            break;      //If you hit ESC key loop will break.
-        }
-    }
-    cvReleaseCapture(&capture); //Release capture.
-    cvDestroyWindow("Camera_Output"); //Destroy Window
-    return 0;

@@ -6,17 +6,18 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+	VideoCapture cap;
 	int i = 0;
 	while(1) {
-		VideoCapture cap(i); // open the video camera no. 0
+		cap(i); // open the video camera no. 0
 
 		if (!cap.isOpened()) { // if not success, exit program
 		    cout << "Cannot open the video cam no." << i << endl;
 		    i++;
-		}
-		else if (i >= 5) {
-		    cout << "Failed to open any of the video cams" << endl;
-		    return -1;
+		    if (i >= 5) {
+		    	cout << "Failed to open any of the video cams" << endl;
+		    	return -1;
+			}
 		}
 		else {
 		    cout << "Successfully opened the video cam no." << i << endl;

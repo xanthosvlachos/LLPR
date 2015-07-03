@@ -6,10 +6,13 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	VideoCapture cap;
-	int i = 0;
+	VideoCapture cap(0);
+	if (!cap.isOpened()) { // if not success, exit program
+		    cout << "Cannot open the video cam no." << endl;
+	}
+	/*int i = 0;
 	while(1) {
-		cap(i); // open the video camera no. 0
+		VideoCapture cap(i); // open the video camera no. 0
 
 		if (!cap.isOpened()) { // if not success, exit program
 		    cout << "Cannot open the video cam no." << i << endl;
@@ -23,7 +26,7 @@ int main(int argc, char* argv[])
 		    cout << "Successfully opened the video cam no." << i << endl;
 		    break;
 		}
-	}
+	}*/
     
    double dWidth = cap.get(CV_CAP_PROP_FRAME_WIDTH); //get the width of frames of the video
    double dHeight = cap.get(CV_CAP_PROP_FRAME_HEIGHT); //get the height of frames of the video

@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8)
+project( CaptureFromCamera )
+find_package( OpenCV REQUIRED )
+add_executable( capturecamera.out capturecamera.cpp )
+target_link_libraries( capturecamera.out ${OpenCV_LIBS} )

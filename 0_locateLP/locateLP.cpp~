@@ -380,7 +380,7 @@ int main( int argc, char** argv ) {
 	createTrackbar("Min Threshold:", WINDOWNAME, &lowThreshold, max_lowThreshold, CannyThreshold);	/// Create a Trackbar for user to enter threshold
 	CannyThreshold(0, 0);																			/// Show the image
 
-	waitKey(0);		/// Wait until user exit program by pressing a key
+	waitKey(0);																						/// Wait until user exit program by pressing a key
 
 	return 0;
 }

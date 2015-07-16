@@ -20,7 +20,7 @@ rm letter*.png
 
 echo "-------------------------------"
 echo "Greek License Plate: "
-cat output.txt | grep '[Α-Ω0-9]' | perl -p -e 's/[^Α-Ω0-9]+//g'
+cat output.txt | grep '[A-Z0-9]' | perl -p -e 's/[^A-Z0-9]+//g'
 printf "\n"
 echo "-------------------------------"
 
